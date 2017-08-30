@@ -7,7 +7,7 @@ var allClearBtn = document.querySelector('#all-clear')
 var firstNumber;
 var secondNumber = Number(readout.innerText);
 var operation;
-var isAnAnswer = undefined;
+var isAnAnswer = false;
 
 digits.forEach(function(btn){
     btn.addEventListener('click', function (){
@@ -23,19 +23,18 @@ digits.forEach(function(btn){
 
 operators.forEach(function(btn){
     btn.addEventListener('click', function(){
-        // if (firstNumber === undefined){
+        if (firstNumber === undefined){
             firstNumber = Number(readout.innerText);
             operation = this.innerText;
             readout.innerText = '';
-        // } else {
-        //     secondNumber = Number(readout.innerText);
-        //     firstNumber = evaluate(operation, firstNumber, secondNumber);
-        //     console.log(firstNumber);
-        //     operation = this.innerText;
-        //     readout.innerText = '';
-        // }  
-        })
-
+        } else {
+            secondNumber = Number(readout.innerText);
+            firstNumber = evaluate(operation, firstNumber, secondNumber);
+            operation = this.innerText;
+            readout.innerText = '';
+        }  
+    })
+})
 function allClear() {
     firstNumber = undefined;
     secondNumber = undefined;
